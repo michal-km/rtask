@@ -55,6 +55,7 @@ RUN composer require drupal/core-dev
 RUN composer install
 RUN composer require drush/drush
 RUN ln -s /var/www/rtask/vendor/drush/drush/drush /usr/bin/drush
+RUN composer require --dev phpspec/prophecy-phpunit:^2
 RUN ln -s /var/www/rtask/vendor/phpunit/phpunit/phpunit /usr/bin/phpunit
 
 RUN mkdir /var/www/rtask/web/sites/default/files
