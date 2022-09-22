@@ -22,7 +22,7 @@ cd rtask
 docker-compose up -d
 ```
 
-The build process can take up to several minutes.
+The build process can take up to several minutes on slower machines. In real life case the container (already built) would be pulled from dockerhub. Here, it is deliberately left in form of source files in order to demonstrate how the stack was built.
 
 ### 3. Populate with example data
 
