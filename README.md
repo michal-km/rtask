@@ -32,10 +32,11 @@ Five example article nodes are available out of the box for purpose of testing. 
 
 When all containers will be up and running, Drupal site should be present at http://localhost, installed with minimal configuration. All neccessary modules, services and resources should be already installed and enabled. The endpoint should be available at http://localhost/article/all.
 
-If the endpoint returns error 500 (unable to find service exercise.rest), a cache rebuild is needed. To perform that, please login to CMS and clear cache manually or execute a command:
+Important: There was a case when the endpoint returned error 500 (unable to find service exercise.rest) after setting up. In such case a cache rebuild is needed. To perform that, please login to CMS and clear cache manually or execute a command inside container:
 
 ```
-docker exec -it -w /var/www/rtask {container_id} drush cache:rebuild
+cd /var/www/rtask
+drush cache:rebuild
 ```
 
 ## In scope
