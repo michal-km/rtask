@@ -1,4 +1,4 @@
-# Exercise for REST services
+# Exercise in REST services
 
 The module source code is located in **exercise** folder.
 All docker related files are located in **docker** folder.
