@@ -77,9 +77,9 @@ class ArticleRestResource extends ResourceBase {
   public function get() {
     $result = [];
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $query->condition('type', 'article');
+    $query->condition('type', 'article')
           ->condition('status', TRUE)
-          ->sort('created', 'DESC')
+          ->sort('created', 'DESC');
     $nids = $query->execute();
     $nodes = $this->entityTypeManager->getStorage('node')
                   ->loadMultiple($nids);
