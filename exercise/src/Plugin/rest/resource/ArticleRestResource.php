@@ -5,13 +5,11 @@ namespace Drupal\exercise\Plugin\rest\resource;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Psr\Log\LoggerInterface;
-use Drupal\Core\Session\AccountProxyInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use \Drupal\exercise\ExerciseRestService;
+use Drupal\exercise\ExerciseRestService;
 
 /**
- * Provides a resource to get all articles via GET method
+ * Provides a resource to get all articles via GET method.
+ *
  * @RestResource(
  *   id = "article_rest_resource",
  *   label = @Translation("Article Rest Resource"),
@@ -23,16 +21,17 @@ use \Drupal\exercise\ExerciseRestService;
 class ArticleRestResource extends ResourceBase {
 
   /**
-   * Injected ExerciseRestService
+   * Injected ExerciseRestService.
+   *
    * @var \Drupal\exercise\ExerciseRestService
    */
   protected $exerciseRestService;
-  
+
   /**
    * Constructs a Drupal\rest\Plugin\ResourceBase object.
    *
    * @param array $config
-   *   Plugin instance information
+   *   Plugin instance information.
    * @param string $module_id
    *   Module_id for the plugin instance.
    * @param mixed $module_definition
@@ -71,6 +70,7 @@ class ArticleRestResource extends ResourceBase {
 
   /**
    * Returns complete list of articles.
+   *
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    */
   public function get() {

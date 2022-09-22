@@ -2,7 +2,9 @@
 
 /**
  * @file
- * Primary module hooks for Exercise module.
+ * Exercise module, defines:
+ *   - ArticleBundle class
+ *   - single REST endpoint for retrieving ArticleBundle nodes.
  */
 
 /**
