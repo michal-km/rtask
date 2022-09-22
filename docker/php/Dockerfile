@@ -62,6 +62,6 @@ RUN ln -s /var/www/rtask/vendor/phpunit/phpunit/phpunit /usr/bin/phpunit
 RUN mkdir /var/www/rtask/web/sites/default/files
 RUN chmod 777 /var/www/rtask/web/sites/default/files
 COPY ./settings.php /var/www/rtask/web/sites/default/settings.php
-RUN chmod 666 /var/www/rtask/web/sites/default/settings.php
+RUN chmod 444 /var/www/rtask/web/sites/default/settings.php
 
 RUN composer install
