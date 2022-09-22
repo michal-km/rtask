@@ -25,7 +25,8 @@ RUN apt-get update -y
 
 # Dependencies for gd and zip
 
-RUN apt-get install -y libzip-dev zlib1g-dev libpng-dev libwebp-dev libjpeg62-turbo-dev
+RUN apt-get install -y libzip-dev zlib1g-dev libpng-dev libwebp-dev libjpeg-dev libfreetype6-dev
+RUN docker-php-ext-configure gd --with-jpeg --with-freetype
 
 # Install neccessary php extensions
 
