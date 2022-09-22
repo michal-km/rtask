@@ -5,6 +5,7 @@ namespace Drupal\exercise\Plugin\rest\resource;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\exercise\ExerciseRestService;
 
 /**
