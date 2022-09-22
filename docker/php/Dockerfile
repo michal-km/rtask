@@ -59,9 +59,12 @@ RUN ln -s /var/www/rtask/vendor/drush/drush/drush /usr/bin/drush
 RUN composer require --dev phpspec/prophecy-phpunit:^2
 RUN ln -s /var/www/rtask/vendor/phpunit/phpunit/phpunit /usr/bin/phpunit
 
-RUN mkdir /var/www/rtask/web/sites/default/files
-RUN chmod 777 /var/www/rtask/web/sites/default/files
+COPY ./phpunit.xml.dist /var/www/rtask/web/core/phpunit.xml.dist
+COPY ./files /var/www/rtask/web/sites/default/files
+RUN chown -R www-data:www-data /var/www/rtask/web/sites/default/files && chmod -R 770 /var/www/rtask/web/sites/default/files
 COPY ./settings.php /var/www/rtask/web/sites/default/settings.php
 RUN chmod 444 /var/www/rtask/web/sites/default/settings.php
+RUN mkdir /var/www/rtask/config_sync
+RUN chown -R www-data:www-data /var/www/rtask/config_sync && chmod 770 /var/www/rtask/config_sync
 
 RUN composer install

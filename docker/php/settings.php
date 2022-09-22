@@ -805,3 +805,9 @@ $databases['default']['default'] = array (
   'driver' => 'mysql',
   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
 );
+$settings['config_sync_directory'] = '/var/www/rtask/config_sync';
+$settings['trusted_host_patterns'] = array(
+  'localhost',
+  '127.0.0.1',
+  'web'
+);

@@ -1,0 +1,4 @@
+services:
+  exercise.rest:
+    class: Drupal\exercise\ExerciseRestService
+    arguments: ['@entity_type.manager']

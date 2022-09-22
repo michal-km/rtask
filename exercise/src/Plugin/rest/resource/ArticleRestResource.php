@@ -8,8 +8,7 @@ use Psr\Log\LoggerInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use \Drupal\Core\Entity\EntityTypeManager;
-use \Drupal\image\Entity\ImageStyle;
+use \Drupal\exercise\ExerciseRestService;
 
 /**
  * Provides a resource to get all articles via GET method
@@ -24,10 +23,10 @@ use \Drupal\image\Entity\ImageStyle;
 class ArticleRestResource extends ResourceBase {
 
   /**
-   * Injected EntityTypeManager service
-   * @var \Drupal\Core\Entity\EntityTypeManager
+   * Injected ExerciseRestService
+   * @var \Drupal\exercise\ExerciseRestService
    */
-  protected $entityTypeManager;
+  protected $exerciseRestService;
   
   /**
    * Constructs a Drupal\rest\Plugin\ResourceBase object.
@@ -42,8 +41,8 @@ class ArticleRestResource extends ResourceBase {
    *   Serialization formats.
    * @param \Psr\Log\LoggerInterface $logger
    *   A logger.
-   * @param \Drupal\Core\Entity\EntityTypeManager $entityTypeManager
-   *   Entity Type Manager service (injected).
+   * @param \Drupal\exercise\ExerciseRestService $exerciseRestService
+   *   ExerciseRestService (injected).
    */
   public function __construct(
     array $config,
@@ -51,9 +50,9 @@ class ArticleRestResource extends ResourceBase {
     $module_definition,
     array $serializer_formats,
     LoggerInterface $logger,
-    EntityTypeManager $entityTypeManager) {
+    ExerciseRestService $exerciseRestService) {
     parent::__construct($config, $module_id, $module_definition, $serializer_formats, $logger);
-    $this->entityTypeManager = $entityTypeManager;
+    $this->exerciseRestService = $exerciseRestService;
   }
 
   /**
@@ -66,7 +65,7 @@ class ArticleRestResource extends ResourceBase {
       $module_definition,
       $container->getParameter('serializer.formats'),
       $container->get('logger.factory')->get('article_rest_resource'),
-      $container->get('entity_type.manager'),
+      $container->get('exercise.rest'),
     );
   }
 
@@ -75,25 +74,9 @@ class ArticleRestResource extends ResourceBase {
    * @throws \Symfony\Component\HttpKernel\Exception\HttpException
    */
   public function get() {
-    $result = [];
-    $query = $this->entityTypeManager->getStorage('node')->getQuery();
-    $query->condition('type', 'article')
-          ->condition('status', TRUE)
-          ->sort('created', 'DESC');
-    $nids = $query->execute();
-    $nodes = $this->entityTypeManager->getStorage('node')
-                  ->loadMultiple($nids);
-  	foreach ($nodes as $node) {
-      $imageUri = $node->field_image->entity->getFileUri();
-      $imageUrl = ImageStyle::load('cropped')->buildUrl($imageUri);
-	    $result[] = array(
-	  	  'title' => $node->title->value,
-        'description' => $node->field_description->value,
-        'image' => $imageUrl,
-	    );
-  	}
-    $response = new ResourceResponse($result);
-    $response->addCacheableDependency($result);
+    $data = $this->exerciseRestService->getAllArticlesData();
+    $response = new ResourceResponse($data);
+    $response->addCacheableDependency($data);
     return $response;
   }
 
