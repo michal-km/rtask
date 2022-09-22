@@ -19,7 +19,6 @@ cd rtask
 
 ### 2. Build & run
 ```
-docker build
 docker-compose up -d
 ```
 
@@ -27,7 +26,7 @@ The build process can take up to several minutes.
 
 ### 3. Populate with example data
 
-Five example article nodes are available out of the box for purpose of testing. More can be added in the CMS which can be accessed at http://localhost/user/login with credentials: admin/tbd.
+Five example article nodes are available out of the box for purpose of testing. More can be added in the CMS which can be accessed at http://localhost/user/login with credentials: admin / zaTtYzpCvxVvwQj
 
 ### 4. Use
 
