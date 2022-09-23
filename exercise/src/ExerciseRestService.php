@@ -37,7 +37,7 @@ class ExerciseRestService {
    * @return array
    *   Array to be returned in JSON response.
    */
-  public function getArticleData($node) : array {
+  protected function getArticleData($node) : array {
     return [
       'title' => $node->getTitle(),
       'description' => $node->getDescription(),
@@ -48,7 +48,7 @@ class ExerciseRestService {
   /**
    * Loads all available nodes of type article.
    */
-  public function loadAllArticles() {
+  protected function loadAllArticles() {
     $query = $this->entityTypeManager->getStorage('node')->getQuery();
     $query->condition('type', 'article')
       ->condition('status', TRUE)
